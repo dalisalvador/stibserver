@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const vehicles = require("./routes/api/vehicles");
-const axios = require("axios");
+const vehiclesAPI = require("./assets/vehiclesAPI");
 
 const app = express();
 
@@ -26,3 +26,9 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+vehiclesAPI.init();
+
+setInterval(() => {
+  vehiclesAPI.getLines();
+}, 15 * 1000);
